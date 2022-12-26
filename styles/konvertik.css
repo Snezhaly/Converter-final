@@ -1,0 +1,269 @@
+html,
+body
+{
+	margin: 0 !important;
+	height: 100%;
+	width: 100%;
+	font-family: 'Roboto', sans-serif;
+}
+h1 {
+	margin: 0;
+	color: #ff0000;
+}
+.container {
+	padding: 0 30px;
+}
+body{
+	background-color: #d8d8d9;
+}
+.header__container{
+	background-color: black;
+}
+.header__title{
+	display: block;
+	border-bottom: 1px solid white;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+	padding-left: 15px;
+}
+.header__text{
+	color: white;
+	max-width: 700px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	margin: 0 auto;
+	font-size: 20px;
+}
+.action__btn{
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.div_centre {
+	padding-top: 100px;
+}
+.div_upload_initial_excel
+{
+	width: 35%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	background-color: #cd0808;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	color: #fff;
+	font-size: 20px;
+}
+.div_upload_result_excel
+{
+	height: 8%;
+	width: 35%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	background-color: #cd0808;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	color: #fff;
+	font-size: 20px;
+}
+.div_proceed
+{
+	height: 8%;
+	width: 35%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	background-color: #cd0808;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	color: #fff;
+	font-size: 20px;
+}
+.div_shadow
+{
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: #979aaa;
+	justify-content: center;
+	align-items: center;
+	border-radius: 40px;
+}
+.div_data_proceed
+{
+	display: flex;
+	flex-direction: column;
+	width: 95%;
+	height: 95%;
+	background-color: #424242;
+/*	justify-content: center;*/
+	align-items: center;
+	border-radius: 25px;
+	overflow-y: auto;
+}
+.div_single_data_proceed
+{
+	display: grid;
+	width: 70%;
+	grid-template-columns: 5fr 3fr 5fr;
+	/*justify-content: space-between;
+	align-items: center;*/
+	border-bottom: 3px solid #41a9a9;
+	color: white;
+    padding-bottom: 12px;
+}
+.div_single_data_proceed:not(:last-child) {
+	margin-bottom: 10px;
+}
+.div_inputs
+{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+.div_result_head
+{
+	display: flex;
+	flex-direction: column;
+	width: 95%;
+	height: 95%;
+	justify-content: center;
+	align-items: center;
+}
+.div_heads_chosen
+{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: right;
+	align-items: center;
+}
+.div_heads_chosen:hover {
+	color: #ff8100;
+}
+.div_close
+{
+	display: flex;
+	flex-direction: row-reverse;
+	width: 95%;
+}
+.select_result_head
+{
+	height: auto;
+	width: 25%;
+}
+.button_choose_select {
+	margin-top: 15px;
+	height: 8%;
+	width: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background-color: #ff0000;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #fff;
+	border: none;
+	font-size: 20px;
+}
+.button_choose_select_additional {
+	margin-top: 15px;
+	height: 8%;
+	width: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background-color: #ff0000;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #fff;
+	border: none;
+	font-size: 20px;
+}
+.span_close
+{
+	font-weight: bolder;
+	font-size: 2.5em;
+}
+.span_close:hover {
+	color: #ff0000;
+}
+.button_send {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	height: 8%;
+	width: 20%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	background-color: #cd0808;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+}
+.input_initial_excel,
+.input_result_excel,
+.a_link
+{
+	display: none;
+}
+.span_close,
+.div_upload_result_excel,
+.div_proceed,
+.div_heads_chosen,
+.div_upload_initial_excel:hover
+{
+	cursor: pointer;
+}
+
+.square
+{
+	height: 5vh;
+	width: 5vh;
+	animation: 1.5s linear 0s normal none infinite running rot;
+	background-image: url("../images/ring.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+@keyframes rot
+{
+	0%
+	{
+		transform: rotate(0deg);
+	}
+	100%
+	{
+		transform: rotate(360deg);
+	}
+}
+
+.div_result_head_title {
+	color: #fff;
+    margin-bottom: 10px;
+	font-size: 25px;
+}
