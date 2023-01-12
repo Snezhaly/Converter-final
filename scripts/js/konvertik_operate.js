@@ -1,34 +1,49 @@
 document.addEventListener('DOMContentLoaded', konvertik_page_ready);
+
+
 function konvertik_page_ready()
-{
-	document.getElementsByClassName('div_upload_initial_excel')[0].addEventListener('click', attache_file);
-	document.getElementsByClassName('div_upload_result_excel')[0].addEventListener('click', attache_file);
-	document.getElementsByClassName('div_proceed')[0].addEventListener('click', upload_files);
+{	document.getElementsByClassName('div_proceed')[0].addEventListener('click', upload_files);
 	sessionStorage.setItem('data', '');
 }
-function attache_file()
-{
-	let class_name = this.className;
-	switch(this.className)
-	{
-		case 'div_upload_initial_excel':
-			remove_element('input_initial_excel', 0)();
-			class_name = 'input_initial_excel';
-		break;
-		case 'div_upload_result_excel':
-			class_name = 'input_result_excel';
-			remove_element('input_result_excel', 0)();
-		break;
+
+document.getElementById('input_initial_excel').addEventListener('change', function(){
+	if( this.value ){
+		document.getElementById("desc1").innerHTML = document.getElementsByClassName("input_initial_excel")[0].files[0].name + '<i id="delete_file_input1" class="fas fa-times delete"></i>';
+	
+		document.getElementById('delete_file_input1').addEventListener('click', function(){
+			document.getElementById('input_initial_excel').value= null;
+			document.getElementById("desc1").innerHTML = "Загрузите файл с данными";
+		  });
+		
+	} else { // Если после выбранного тыкнули еще раз, но дальше cancel
 	}
-	let input_excel = create_element('input', class_name);
-	input_excel.type = 'file';
-	document.body.append(input_excel);
-	input_excel.click();
-}
+  });
+  document.getElementById('input_result_excel').addEventListener('change', function(){
+	if( this.value ){
+		document.getElementById("desc2").innerHTML = document.getElementsByClassName("input_result_excel")[0].files[0].name + '<i id="delete_file_input2" class="fas fa-times delete"></i>';
+	
+		document.getElementById('delete_file_input2').addEventListener('click', function(){
+			document.getElementById('input_result_excel').value= null;
+			document.getElementById("desc2").innerHTML = "Загрузите файл со столбцами для конвертации";
+		  });
+		
+	} else { // Если после выбранного тыкнули еще раз, но дальше cancel
+	}
+  });
+
+
+
+
 function upload_files()
 {
 	sessionStorage.setItem('data', '');
 	let datum = new FormData();
+	if (document.getElementsByClassName('input_initial_excel')[0].files[0] == null || document.getElementsByClassName('input_result_excel')[0].files[0] == null) {
+		document.getElementById("desc3").innerHTML = "У ВАС НЕ ВЫБРАНЫ НЕКОТОРЫЕ ИЗ ФАЙЛОВ!";
+		document.getElementById("desc3").style.color='red';
+		} else {
+			
+
 	datum.append('initial_file', document.getElementsByClassName('input_initial_excel')[0].files[0]);
 	datum.append('result_file', document.getElementsByClassName('input_result_excel')[0].files[0]);
 	let request = fetch(
@@ -46,12 +61,19 @@ function upload_files()
 				{
 					// console.log(text);
 					// return;
-					document.getElementsByClassName('input_initial_excel')[0].remove();
-					document.getElementsByClassName('input_result_excel')[0].remove();
+					// document.getElementsByClassName('input_initial_excel')[0].remove();
+					// document.getElementsByClassName('input_result_excel')[0].remove();
+					document.getElementById('input_result_excel').value= null;			
+					document.getElementById('input_initial_excel').value= null;
+			document.getElementById("desc1").innerHTML = "Загрузите файл с данными";
+			document.getElementById("desc2").innerHTML = "Загрузите файл со столбцами для конвертации";
+			document.getElementById("desc3").innerHTML = "Конвертировать";
+
 					layout_data(text);
 				});
 			});
-}
+		}		
+	}
 
 function layout_data(text)
 {
@@ -102,7 +124,7 @@ function layout_data(text)
 
 		div_heads_chosen.addEventListener('click', show_select(div_heads_chosen));
 	}
-	let button_send = create_element('button', 'button_send');
+	let button_send = create_element('button', 'button_send btn');
 	button_send.textContent = 'Конвертировать';
 	div_data_proceed.append(button_send);
 	button_send.addEventListener('click', convert);
@@ -135,6 +157,7 @@ function convert()
 				});
 			});
 }
+
 function check_div_inputs()
 {
 	let div_inputs = document.getElementsByClassName('div_inputs');
@@ -212,7 +235,7 @@ function show_select(div_heads_chosen)
 				let option = new Option(option_collection[key], key, false, false);
 				select_result_head.append(option);
 			}
-			let button_choose_select = create_element('button', 'button_choose_select');
+			let button_choose_select = create_element('button', 'button_choose_select btn');
 			button_choose_select.textContent = 'Выбрать';
 			div_result_head.append(button_choose_select);
 			button_choose_select.addEventListener('click', choose_selection(div_shadow, div_heads_chosen, action, object_data, column_from));
@@ -264,7 +287,7 @@ function choose_selection(div_shadow, div_heads_chosen, action, object_data, col
 				let option = new Option(option_collection[key], key, false, false);
 				select_result_head.append(option);
 			}
-			let button_choose_select_additional = create_element('button', 'button_choose_select_additional');
+			let button_choose_select_additional = create_element('button', 'button_choose_select_additional btn');
 			button_choose_select_additional.textContent = 'Выбрать';
 			div_result_head.append(button_choose_select_additional);
 			button_choose_select_additional.addEventListener('click', choose_selection_additional(div_shadow, div_heads_chosen, array_chosen_temporary));
@@ -309,6 +332,12 @@ function remove_element(class_name, number)
 function create_element(tag_name, class_name)
 {
 	let new_element = document.createElement(tag_name);
+	if (class_name == "input_initial_excel") {
+		new_element.accept=".xls, .xlsx";
+	}
+	if (class_name == "input_result_excel") {
+		new_element.accept=".xls, .xlsx";
+	}
 	new_element.className = class_name;
 	return new_element;
 }

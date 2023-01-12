@@ -1,0 +1,29 @@
+@media (max-width: 576px){
+    #breathing-button{
+        font-size: 40px;
+    }
+
+    .header__text{
+        font-size: 34px;
+    }
+
+    .div_upload_initial_excel{
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .div_upload_result_excel{
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .div_proceed{
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .discr__text {
+        text-align: center;
+        font-size: 24px;
+    }
+}
